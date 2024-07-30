@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Said-Store.Application\Said-Store.Application.csproj" />
     <ProjectReference Include="..\Said-Store.Domain\Said-Store.Domain.csproj" />
+    <ProjectReference Include="..\Said-Store.Instrastructure\Said-Store.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

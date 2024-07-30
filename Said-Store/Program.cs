@@ -1,25 +1,16 @@
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static Said_Store.Infrastructure.AppDbContext;
+public class Program{
+public void ConfigureService(IServiceCollection services)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    services.AddControllers();
+    services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyReadingList.WebAPI", Version = "v1" });
+    });
+    var connection = Configuration["ConnectionSqlite:SqliteConnectionString"];
+    services.AddDbContext<MyDbContext>(Options.UseSqlite(Connection));
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+}
