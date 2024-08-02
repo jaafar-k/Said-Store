@@ -1,20 +1,40 @@
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-
 using Said_Store.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using static Said_Store.Infrastructure.AppDbContext;
-public class Program{
-public void ConfigureService(IServiceCollection services)
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(c =>
 {
-    services.AddControllers();
-    services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyReadingList.WebAPI", Version = "v1" });
-    });
-    var connection = Configuration["ConnectionSqlite:SqliteConnectionString"];
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyReadingList.WebAPI", Version = "v1" });
+});
 
-    services.AddDbContext<AppDbContext>(Options.UseSqlite(Connection));
+var connection = builder.Configuration.GetConnectionString("SqliteConnectionString");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(connection));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyReadingList.WebAPI v1");
+    });
 }
-}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
