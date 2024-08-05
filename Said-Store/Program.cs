@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var connection = builder.Configuration.GetConnectionString("SqliteConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(connection));
+    options.UseSqlite(connection, b => b.MigrationsAssembly("Said-Store")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
