@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Said_Store.Application.ProductCommands
+namespace Said_Store.Application.Repositories
 {
-    public record CreateProduct(string Name);
+    internal class IBaseRepository
+    {
+    }
 }

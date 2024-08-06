@@ -1,7 +1,8 @@
 using Microsoft.OpenApi.Models;
 using Said_Store.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-
+using Said_Store.Application.DTOs;
+using MediatR;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
