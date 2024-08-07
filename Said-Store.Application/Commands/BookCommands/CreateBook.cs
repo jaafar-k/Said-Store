@@ -1,6 +1,5 @@
-﻿using MediatR;
-
-using Said_Store.Application.DTOs;
+﻿using Said_Store.Application.DTOs;
+using Said_Store.Shared.Abstractions.Application.Commands;
 
 namespace Said_Store.Application.Commands.BookCommands
 {
@@ -10,5 +9,5 @@ namespace Said_Store.Application.Commands.BookCommands
         string? Genre,
         string? Year,
         decimal Price,
-        string? Description) : IRequest<BookDto>;
+        string? Description) : ICommand<BookDto>;
 }

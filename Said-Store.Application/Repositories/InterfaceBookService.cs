@@ -1,11 +1,6 @@
 ﻿using Said_Store.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Said_Store.Application
+namespace Said_Store.Application.Repositories
 {
     internal interface InterfaceBookService
     {
@@ -14,6 +9,6 @@ namespace Said_Store.Application
         Task<Book> AddBookAsync(Book book);
         Task<Book?> UpdateBookAsync(int id, Book book);
         Task<bool> DeleteBookAsync(int id);
-
     }
 }
+

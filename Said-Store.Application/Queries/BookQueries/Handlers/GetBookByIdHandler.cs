@@ -19,8 +19,7 @@ namespace Said_Store.Application.Queries.BookQueries.Handlers
         public async Task<BookDto> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
             var book = await _books.GetWholeByIdAsync(request.Id, cancellationToken);
-            var setter = TypeAdapterConfig<Book, BookDto>.NewConfig()
-                .Map(dest => dest.TagIds, src => src.Tags.Select(t => t.Id)).MaxDepth(2);
+            var setter = TypeAdapterConfig<Book, BookDto>.NewConfig().MaxDepth(2);
             return book.Adapt<Book, BookDto>(setter.Config);
         }
     }

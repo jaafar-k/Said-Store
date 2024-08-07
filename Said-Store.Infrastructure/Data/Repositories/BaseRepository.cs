@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using SaidStore.Application.Repositories;
+using Said_Store.Application.Repositories;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {

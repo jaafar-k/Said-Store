@@ -18,7 +18,7 @@ namespace CleanApiSample.Api.Controllers
 
         
         [HttpPost]
-        public async Task<BookDto> Post(CreateBook command, CancellationToken cancellationToken)
+        public async Task<Response<BookDto>> Post(CreateBook command, CancellationToken cancellationToken)
             => await _mediator.Send(command, cancellationToken);
     }
 }

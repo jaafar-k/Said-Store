@@ -20,7 +20,6 @@ namespace Said_Store.Application.Queries.BookQueries.Handlers
             var books = await _books.GetWholeAsync(cancellationToken);
 
             var setter = TypeAdapterConfig<Book, BookDto>.NewConfig()
-                .Map(dest => dest.TagIds, src => src.Tags.Select(t => t.Id))
                 .MaxDepth(2);
             var booksDTO = books.Adapt<IEnumerable<Book>, IEnumerable<BookDto>>(setter.Config);
 
