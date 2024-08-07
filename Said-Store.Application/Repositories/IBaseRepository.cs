@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SaidStore.Application.Repositories
+namespace Said_Store.Application.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {

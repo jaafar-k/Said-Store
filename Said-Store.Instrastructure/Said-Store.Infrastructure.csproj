@@ -24,9 +24,12 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Said-Store.Application\Said-Store.Application.csproj" />
-    <ProjectReference Include="..\Said-Store.Domain\Said-Store.Domain.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\Said-Store.Application\Said-Store.Application.csproj" />
+		<ProjectReference Include="..\Said-Store.Domain\Said-Store.Domain.csproj" />
+	</ItemGroup
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="10.0.1" />
+	</ItemGroup>110<PackageReference Include="MediatR" Version="11.0.0" />
+	>
 </Project>
