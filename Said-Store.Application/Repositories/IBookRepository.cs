@@ -1,4 +1,6 @@
-﻿using Said_Store.Domain;
+﻿using Said_Store.Domain.Entities;
+
+using SaidStore.Application.Repositories;
 
 namespace Said_Store.Application.Repositories
 {

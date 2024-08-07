@@ -1,7 +1,7 @@
 ﻿using Said_Store.Application.DTOs;
 using Said_Store.Shared.Abstractions.Application.Commands;
 
-namespace Said_Store.Application.BookCommands
+namespace Said_Store.Application.Commands.BookCommands
 {
     public record UpdateBook(
         int ID,

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Said_Store.Infrastructure;
+using Said_Store.Infrastructure.Data;
 
 #nullable disable
 

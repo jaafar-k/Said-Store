@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Said_Store.Application.BookCommands.Handlers
+namespace Said_Store.Application.Commands.BookCommands.Handlers
 {
-    internal class CreateBookHandler
+    internal class DeleteBookHandler
     {
     }
 }

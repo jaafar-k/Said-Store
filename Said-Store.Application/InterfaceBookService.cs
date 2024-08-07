@@ -1,5 +1,4 @@
-﻿using Said_Store.Domain;
-
+﻿using Said_Store.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

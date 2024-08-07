@@ -3,7 +3,7 @@ using Said_Store.Application.DTOs;
 using Said_Store.Shared.Abstractions.Application.Queries;
 using Said_Store.Application.Repositories;
 using Mapster;
-using Said_Store.Domain;
+using Said_Store.Domain.Entities;
 namespace Said_Store.Application.Queries.BookQueries.Handlers
 {
     internal class GetAllBooksHandler : IQueryHandler<GetAllBooksQuery, List<BookDto>>

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Said_Store.Application.DTOs;
 using Said_Store.Infrastructure;
-using Said_Store.Application.BookCommands;
 using Said_Store.Domain;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Said_Store.Application.Commands.BookCommands;
 
 namespace Said_Store.Application
 {

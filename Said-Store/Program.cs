@@ -1,8 +1,9 @@
-using Microsoft.OpenApi.Models;
-using Said_Store.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Said_Store.Application.DTOs;
-using MediatR;
+using Microsoft.OpenApi.Models;
+
+using Said_Store.Infrastructure;
+using Said_Store.Infrastructure.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDatabase();
 
 var app = builder.Build();
 
