@@ -28,4 +28,7 @@
 		<ProjectReference Include="..\Said-Store.Application\Said-Store.Application.csproj" />
 		<ProjectReference Include="..\Said-Store.Domain\Said-Store.Domain.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Data\Migrations\" />
+	</ItemGroup>
 </Project>

@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Said_Store.Application.DTOs;
-using Said_Store.Infrastructure;
 using Said_Store.Application.BookCommands;
 using Said_Store.Domain;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
-namespace Said_Store.Application
+using Said_Store.Application.Repositories;
+namespace Said_Store.Infrastructure
 {
     public class BookService : InterfaceBookService
     {
