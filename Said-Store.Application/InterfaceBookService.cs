@@ -17,5 +17,3 @@ namespace Said_Store.Application
         }
     }
 
-}
-}
