@@ -9,6 +9,11 @@ namespace Said_Store.Infrastructure.Data.Repositories
         {
         }
 
+        public Task DeleteAsync(Book book, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Book>> GetWholeAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
