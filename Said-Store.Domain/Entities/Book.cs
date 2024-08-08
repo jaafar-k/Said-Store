@@ -23,7 +23,7 @@ namespace Said_Store.Domain.Entities
             Description = description;
         }
         
-        public void Update(string? title, string? author, string? genre, string? year, decimal price, string? description)
+        public void UpdateDetails(string? title, string? author, string? genre, string? year, decimal price, string? description)
         {
             Title = title;
             Author = author;
