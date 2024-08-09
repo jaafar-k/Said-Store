@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Said_Store.Application.Commands.OrderCommands.Handlers
 {
-    internal class DeleteOrderHandler : ICommandHandler<DeleteOrder, OrderDto>
+    internal class DeleteOrderHandler : ICommandHandler<DeleteOrder, Unit>
     {
         private readonly IOrderRepository _orderRepository;
 
@@ -17,17 +17,17 @@ namespace Said_Store.Application.Commands.OrderCommands.Handlers
             _orderRepository = orderRepository;
         }
 
-        public async Task<Response<OrderDto>> Handle(DeleteOrder request, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(DeleteOrder request, CancellationToken cancellationToken)
         {
             var order = await _orderRepository.GetByIdAsync(request.Id, cancellationToken);
             if (order == null)
             {
-                return Response.Error<OrderDto>("Order not found");
+                return Response.Error<Unit>("Order not found");
             }
 
             await _orderRepository.DeleteAsync(request.Id, cancellationToken);
 
-            return Response.Success<OrderDto>(null, "Order deleted successfully");
+            return Response.Success(Unit.Value, "Order deleted successfully"); 
         }
     }
 }

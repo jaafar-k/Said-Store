@@ -2,9 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Said_Store.Application.Commands.OrderCommands;
 using Said_Store.Application.DTOs;
+using Said_Store.Application.Queries.OrderItemQueries;
+using Said_Store.Application.Queries.OrderQueries;
 using Said_Store.Shared;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Said_Store.WebApi.Controllers
+namespace Said_Store.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,40 +20,36 @@ namespace Said_Store.WebApi.Controllers
         public OrdersController(IMediator mediator)
             => _mediator = mediator;
 
+        [HttpGet]
+        public async Task<Response<IEnumerable<OrderDto>>> GetAll(CancellationToken cancellationToken)
+        {
+            var query = new GetAllOrdersQuery();
+            return await _mediator.Send(query, cancellationToken);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<Response<OrderDto>> GetById(int id, CancellationToken cancellationToken)
+        {
+            var query = new GetOrderByIdQuery(id);
+            return await _mediator.Send(query, cancellationToken);
+        }
+
         [HttpPost]
         public async Task<Response<OrderDto>> Post(CreateOrder command, CancellationToken cancellationToken)
             => await _mediator.Send(command, cancellationToken);
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDto>> GetById(int id, CancellationToken cancellationToken)
-        {
-            var query = new GetOrderById(id);
-            var result = await _mediator.Send(query, cancellationToken);
-            return result is null ? NotFound() : Ok(result);
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> GetAll(CancellationToken cancellationToken)
-        {
-            var query = new GetAllOrders();
-            var result = await _mediator.Send(query, cancellationToken);
-            return Ok(result);
-        }
-
         [HttpPut("{id}")]
-        public async Task<ActionResult<OrderDto>> Put(int id, [FromBody] UpdateOrder command, CancellationToken cancellationToken)
+        public async Task<Response<OrderDto>> Put(int id, [FromBody] UpdateOrder command, CancellationToken cancellationToken)
         {
-            command = command with { Id = id };
-            var result = await _mediator.Send(command, cancellationToken);
-            return Ok(result);
+            command = command with { OrderId = id };
+            return await _mediator.Send(command, cancellationToken);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+        public async Task<Response<OrderDto>> Delete(int id, CancellationToken cancellationToken)
         {
             var command = new DeleteOrder(id);
-            await _mediator.Send(command, cancellationToken);
-            return NoContent();
+            return await _mediator.Send(command, cancellationToken);
         }
     }
 }

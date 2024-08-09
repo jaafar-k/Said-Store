@@ -1,12 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CleanApiSample.Infrastructure.Data.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using Said_Store.Application.Repositories;
 using Said_Store.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace Said_Store.Infrastructure.Data.Repositories
 {
     internal class BookRepository : BaseRepository<Book>, IBookRepository
     {
+        private readonly AppDbContext _context;
+
         public BookRepository(AppDbContext context) : base(context)
         {
+            _context = context;
         }
 
         public async Task DeleteAsync(Book book, CancellationToken cancellationToken)
@@ -23,7 +31,8 @@ namespace Said_Store.Infrastructure.Data.Repositories
         public async Task<Book> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
         {
             return await _context.Books
-                .SingleOrDefaultAsync(b => b.Id == id, cancellationToken);
+                .SingleOrDefaultAsync(b => b.Id == id, cancellationToken)
+                ?? throw new NotFoundException(nameof(Book), id);
         }
     }
 }

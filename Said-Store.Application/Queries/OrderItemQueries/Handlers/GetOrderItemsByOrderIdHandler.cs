@@ -1,29 +1,25 @@
-﻿using Mapster;
-using MediatR;
-using Said_Store.Application.DTOs;
+﻿using Said_Store.Application.DTOs;
 using Said_Store.Application.Repositories;
-using Said_Store.Shared;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Said_Store.Shared.Abstractions.Application.Queries;
+using Mapster;
+using Said_Store.Domain.Entities;
 
 namespace Said_Store.Application.Queries.OrderItemQueries.Handlers
 {
-    internal class GetOrderItemsByOrderIdHandler : IRequestHandler<GetOrderItemsByOrderId, Response<IEnumerable<OrderItemDto>>>
+    public class GetOrderItemsByOrderIdHandler : IQueryHandler<GetOrderItemsByOrderIdQuery, IEnumerable<OrderItemDto>>
     {
-        private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IOrderItemRepository _orderItems;
 
-        public GetOrderItemsByOrderIdHandler(IOrderItemRepository orderItemRepository)
+        public GetOrderItemsByOrderIdHandler(IOrderItemRepository orderItems)
         {
-            _orderItemRepository = orderItemRepository;
+            _orderItems = orderItems;
         }
 
-        public async Task<Response<IEnumerable<OrderItemDto>>> Handle(GetOrderItemsByOrderId request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<OrderItemDto>> Handle(GetOrderItemsByOrderIdQuery request, CancellationToken cancellationToken)
         {
-            var orderItems = await _orderItemRepository.GetItemsByOrderIdAsync(request.OrderId, cancellationToken);
-            var orderItemDtos = orderItems.Adapt<IEnumerable<OrderItemDto>>();
-
-            return Response.Success(orderItemDtos, "Order Items retrieved successfully.");
+            var orderItems = await _orderItems.GetItemsByOrderIdAsync(request.OrderId, cancellationToken);
+            var setter = TypeAdapterConfig<OrderItem, OrderItemDto>.NewConfig().MaxDepth(2);
+            return orderItems.Adapt<IEnumerable<OrderItem>, IEnumerable<OrderItemDto>>(setter.Config);
         }
     }
 }

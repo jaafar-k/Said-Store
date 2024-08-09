@@ -1,29 +1,25 @@
-﻿using Mapster;
-using MediatR;
-using Said_Store.Application.DTOs;
+﻿using Said_Store.Application.DTOs;
 using Said_Store.Application.Repositories;
-using Said_Store.Shared;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using Said_Store.Shared.Abstractions.Application.Queries;
+using Mapster;
+using Said_Store.Domain.Entities;
 
 namespace Said_Store.Application.Queries.OrderQueries.Handlers
 {
-    internal class GetOrdersByBuyerIdHandler : IRequestHandler<GetOrdersByBuyerId, Response<IEnumerable<OrderDto>>>
+    public class GetOrdersByBuyerIdHandler : IQueryHandler<GetOrdersByBuyerIdQuery, IEnumerable<OrderDto>>
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderRepository _orders;
 
-        public GetOrdersByBuyerIdHandler(IOrderRepository orderRepository)
+        public GetOrdersByBuyerIdHandler(IOrderRepository orders)
         {
-            _orderRepository = orderRepository;
+            _orders = orders;
         }
 
-        public async Task<Response<IEnumerable<OrderDto>>> Handle(GetOrdersByBuyerId request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<OrderDto>> Handle(GetOrdersByBuyerIdQuery request, CancellationToken cancellationToken)
         {
-            var orders = await _orderRepository.GetOrdersByBuyerIdAsync(request.BuyerId, cancellationToken);
-            var orderDtos = orders.Adapt<IEnumerable<OrderDto>>();
-
-            return Response.Success(orderDtos, "Orders retrieved successfully.");
+            var orders = await _orders.GetOrdersByBuyerIdAsync(request.BuyerId, cancellationToken);
+            var setter = TypeAdapterConfig<Order, OrderDto>.NewConfig().MaxDepth(2);
+            return orders.Adapt<IEnumerable<Order>, IEnumerable<OrderDto>>(setter.Config);
         }
     }
 }

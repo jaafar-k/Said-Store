@@ -6,8 +6,8 @@ namespace Said_Store.Infrastructure.Data.Repositories
 {
     internal class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<TEntity> _dbSet;
 
         public BaseRepository(AppDbContext context)
         {

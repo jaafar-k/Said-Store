@@ -4,7 +4,7 @@ using Said_Store.Shared.Abstractions.Application.Commands;
 namespace Said_Store.Application.Commands.BookCommands
 {
     public record UpdateBook(
-        int ID,
+        int Id,
         string Title,
         string Author,
         string Genre,

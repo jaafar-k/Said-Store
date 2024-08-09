@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Said_Store.Application.Commands.OrderCommands
 {
     public record UpdateOrder(
-        int Id,
+        int OrderId,
         int BuyerId,
         List<OrderItemDto> OrderItems,
         decimal TotalAmount,

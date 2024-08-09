@@ -25,7 +25,7 @@ namespace Said_Store.Application.Commands.OrderCommands.Handlers
             var order = await _orderRepository.GetByIdAsync(orderId, cancellationToken);
             if (order == null) return Response.Error<OrderDto>("Order not found.");
 
-            // Update order details
+            
             order = new Order(buyerId, new List<OrderItem>(), shippingAddress);
             foreach (var itemDto in orderItemsDto)
             {
@@ -40,12 +40,12 @@ namespace Said_Store.Application.Commands.OrderCommands.Handlers
                 order.AddOrderItem(orderItem);
             }
 
-            // Validate total amount
+            
             var calculatedTotalAmount = order.OrderItems.Sum(item => item.TotalPrice);
             if (calculatedTotalAmount != totalAmount)
                 return Response.Error<OrderDto>("Total amount mismatch.");
 
-            // Update the order
+          
             order = await _orderRepository.UpdateAsync(order, cancellationToken);
 
             var orderDto = order.Adapt<OrderDto>();

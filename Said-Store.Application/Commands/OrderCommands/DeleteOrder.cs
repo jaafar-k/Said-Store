@@ -4,5 +4,5 @@ using Said_Store.Shared.Abstractions.Application.Commands;
 
 namespace Said_Store.Application.Commands.OrderCommands
 {
-    public record DeleteOrder(int Id) : ICommand<OrderDto>;
+    public record DeleteOrder(int Id) : ICommand<Unit>;
 }

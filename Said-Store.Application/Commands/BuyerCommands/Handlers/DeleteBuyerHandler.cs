@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Said_Store.Application.Commands.BuyerCommands.Handlers
 {
-    internal class DeleteBuyerHandler : ICommandHandler<DeleteBuyer, BuyerDto>
+    internal class DeleteBuyerHandler : ICommandHandler<DeleteBuyer, Unit>
     {
         private readonly IBuyerRepository _buyerRepository;
 
@@ -15,17 +15,17 @@ namespace Said_Store.Application.Commands.BuyerCommands.Handlers
             _buyerRepository = buyerRepository;
         }
 
-        public async Task<Response<BuyerDto>> Handle(DeleteBuyer request, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Handle(DeleteBuyer request, CancellationToken cancellationToken)
         {
             var buyer = await _buyerRepository.GetByIdAsync(request.Id, cancellationToken);
             if (buyer == null)
             {
-                return Response.Error<BuyerDto>("Buyer not found");
+                return Response.Error<Unit>("Buyer not found");
             }
 
             await _buyerRepository.DeleteAsync(request.Id, cancellationToken);
 
-            return Response.Success<BuyerDto>(null, "Buyer deleted successfully.");
+            return Response.Success(Unit.Value, "Buyer deleted successfully.");
         }
     }
 }

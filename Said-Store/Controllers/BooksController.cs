@@ -19,67 +19,36 @@ namespace Said_Store.Api.Controllers
         public BooksController(IMediator mediator)
             => _mediator = mediator;
 
-        [HttpPost]
-        public async Task<ActionResult<Response<BookDto>>> Post(CreateBook command, CancellationToken cancellationToken)
+        [HttpGet]
+        public async Task<Response<IEnumerable<BookDto>>> GetAll(CancellationToken cancellationToken)
         {
-            var response = await _mediator.Send(command, cancellationToken);
-            if (response.Error)
-            {
-                return BadRequest(new { message = response.Message });
-            }
-
-            return CreatedAtAction(nameof(Get), new { id = response.Data.Id }, response);
+            var query = new GetAllBooksQuery();
+            return await _mediator.Send(query, cancellationToken);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Response<BookDto>>> Get(int id, CancellationToken cancellationToken)
+        public async Task<Response<BookDto>> GetById(int id, CancellationToken cancellationToken)
         {
             var query = new GetBookByIdQuery(id);
-            var response = await _mediator.Send(query, cancellationToken);
-            if (response.Error)
-            {
-                return NotFound(new { message = response.Message });
-            }
-
-            return Ok(response);
+            return await _mediator.Send(query, cancellationToken);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<Response<IEnumerable<BookDto>>>> GetAll(CancellationToken cancellationToken)
-        {
-            var query = new GetAllBooksQuery();
-            var response = await _mediator.Send(query, cancellationToken);
-            return Ok(response);
-        }
+        [HttpPost]
+        public async Task<Response<BookDto>> Post(CreateBook command, CancellationToken cancellationToken)
+            => await _mediator.Send(command, cancellationToken);
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Response<BookDto>>> Put(int id, UpdateBook command, CancellationToken cancellationToken)
+        public async Task<Response<BookDto>> Put(int id, [FromBody] UpdateBook command, CancellationToken cancellationToken)
         {
-            if (id != command.Id)
-            {
-                return BadRequest(new { message = "Id mismatch" });
-            }
-
-            var response = await _mediator.Send(command, cancellationToken);
-            if (response.Error)
-            {
-                return NotFound(new { message = response.Message });
-            }
-
-            return NoContent();
+            command = command with { Id = id };
+            return await _mediator.Send(command, cancellationToken);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Response<BookDto>>> Delete(int id, CancellationToken cancellationToken)
+        public async Task<Response<BookDto>> Delete(int id, CancellationToken cancellationToken)
         {
             var command = new DeleteBook(id);
-            var response = await _mediator.Send(command, cancellationToken);
-            if (response.Error)
-            {
-                return NotFound(new { message = response.Message });
-            }
-
-            return NoContent();
+            return await _mediator.Send(command, cancellationToken);
         }
     }
 }

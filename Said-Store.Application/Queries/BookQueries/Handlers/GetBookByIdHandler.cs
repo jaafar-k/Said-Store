@@ -7,7 +7,7 @@ using Said_Store.Domain.Entities;
 
 namespace Said_Store.Application.Queries.BookQueries.Handlers
 {
-    internal class GetBookByIdHandler : IQueryHandler<GetBookByIdQuery, BookDto>
+    public class GetBookByIdHandler : IQueryHandler<GetBookByIdQuery, BookDto>
     {
         private readonly IBookRepository _books;
 

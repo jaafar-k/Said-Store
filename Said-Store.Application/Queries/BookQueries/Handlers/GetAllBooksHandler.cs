@@ -6,7 +6,7 @@ using Mapster;
 using Said_Store.Domain.Entities;
 namespace Said_Store.Application.Queries.BookQueries.Handlers
 {
-    internal class GetAllBooksHandler : IQueryHandler<GetAllBooksQuery, List<BookDto>>
+    public class GetAllBooksHandler : IQueryHandler<GetAllBooksQuery, List<BookDto>>
     {
         private readonly IBookRepository _books;
 

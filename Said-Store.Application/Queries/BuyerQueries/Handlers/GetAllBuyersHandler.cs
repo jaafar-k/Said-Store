@@ -1,25 +1,25 @@
 ﻿using Mapster;
-using MediatR;
 using Said_Store.Application.DTOs;
 using Said_Store.Application.Repositories;
+using Said_Store.Domain.Entities;
 using Said_Store.Shared;
+using Said_Store.Shared.Abstractions.Application.Queries;
 
 namespace Said_Store.Application.Queries.BuyerQueries.Handlers
 {
-    internal class GetAllBuyersHandler : IRequestHandler<GetAllBuyers, Response<IEnumerable<BuyerDto>>>
+    public class GetAllBuyersHandler : IQueryHandler<GetAllBuyersQuery, List<BuyerDto>>
     {
-        private readonly IBuyerRepository _buyerRepository;
+        private readonly IBuyerRepository _buyers;
 
-        public GetAllBuyersHandler(IBuyerRepository buyerRepository)
+        public GetAllBuyersHandler(IBuyerRepository buyers)
         {
-            _buyerRepository = buyerRepository;
+            _buyers = buyers;
         }
 
-        public async Task<Response<IEnumerable<BuyerDto>>> Handle(GetAllBuyers request, CancellationToken cancellationToken)
+        public async Task<List<BuyerDto>> Handle(GetAllBuyersQuery request, CancellationToken cancellationToken)
         {
-            var buyers = await _buyerRepository.GetAllAsync(cancellationToken);
-            var buyerDtos = buyers.Adapt<IEnumerable<BuyerDto>>();
-            return Response.Success(buyerDtos, "Buyers retrieved successfully.");
+            var buyers  = await _buyers.GetWholeAsync(cancellationToken);
+            return buyers.Adapt<IEnumerable<Buyer>, IEnumerable<BuyerDto>>().ToList();
         }
     }
 }

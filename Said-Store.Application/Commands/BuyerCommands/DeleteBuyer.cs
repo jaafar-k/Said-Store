@@ -4,5 +4,5 @@ using Said_Store.Shared.Abstractions.Application.Commands;
 
 namespace Said_Store.Application.Commands.BuyerCommands
 {
-    public record DeleteBuyer(int Id) : ICommand<BuyerDto>;
+    public record DeleteBuyer(int Id) : ICommand<Unit>;
 }

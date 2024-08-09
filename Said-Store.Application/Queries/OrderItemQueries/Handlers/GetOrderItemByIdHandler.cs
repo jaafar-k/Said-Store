@@ -1,32 +1,25 @@
-﻿using Mapster;
-using MediatR;
-using Said_Store.Application.DTOs;
+﻿using Said_Store.Application.DTOs;
 using Said_Store.Application.Repositories;
-using Said_Store.Shared;
-using System.Threading;
-using System.Threading.Tasks;
+using Said_Store.Shared.Abstractions.Application.Queries;
+using Mapster;
+using Said_Store.Domain.Entities;
 
 namespace Said_Store.Application.Queries.OrderItemQueries.Handlers
 {
-    internal class GetOrderItemByIdHandler : IRequestHandler<GetOrderItemById, Response<OrderItemDto>>
+    public class GetOrderItemByIdHandler : IQueryHandler<GetOrderItemByIdQuery, OrderItemDto>
     {
-        private readonly IOrderItemRepository _orderItemRepository;
+        private readonly IOrderItemRepository _orderItems;
 
-        public GetOrderItemByIdHandler(IOrderItemRepository orderItemRepository)
+        public GetOrderItemByIdHandler(IOrderItemRepository orderItems)
         {
-            _orderItemRepository = orderItemRepository;
+            _orderItems = orderItems;
         }
 
-        public async Task<Response<OrderItemDto>> Handle(GetOrderItemById request, CancellationToken cancellationToken)
+        public async Task<OrderItemDto> Handle(GetOrderItemByIdQuery request, CancellationToken cancellationToken)
         {
-            var orderItem = await _orderItemRepository.GetByIdAsync(request.Id, cancellationToken);
-            if (orderItem == null)
-            {
-                return Response.Error<OrderItemDto>("Order Item not found.");
-            }
-
-            var orderItemDto = orderItem.Adapt<OrderItemDto>();
-            return Response.Success(orderItemDto, "Order Item retrieved successfully.");
+            var orderItem = await _orderItems.GetByIdAsync(request.Id, cancellationToken);
+            var setter = TypeAdapterConfig<OrderItem, OrderItemDto>.NewConfig().MaxDepth(2);
+            return orderItem.Adapt<OrderItem, OrderItemDto>(setter.Config);
         }
     }
 }

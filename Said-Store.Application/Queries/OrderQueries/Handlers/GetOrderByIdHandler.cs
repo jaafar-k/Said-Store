@@ -1,30 +1,25 @@
-﻿using Mapster;
-using MediatR;
-using Said_Store.Application.DTOs;
+﻿using Said_Store.Application.DTOs;
 using Said_Store.Application.Repositories;
-using Said_Store.Shared;
+using Said_Store.Shared.Abstractions.Application.Queries;
+using Mapster;
+using Said_Store.Domain.Entities;
 
 namespace Said_Store.Application.Queries.OrderQueries.Handlers
 {
-    internal class GetOrderByIdHandler : IRequestHandler<GetOrderById, Response<OrderDto>>
+    public class GetOrderByIdHandler : IQueryHandler<GetOrderByIdQuery, OrderDto>
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderRepository _orders;
 
-        public GetOrderByIdHandler(IOrderRepository orderRepository)
+        public GetOrderByIdHandler(IOrderRepository orders)
         {
-            _orderRepository = orderRepository;
+            _orders = orders;
         }
 
-        public async Task<Response<OrderDto>> Handle(GetOrderById request, CancellationToken cancellationToken)
+        public async Task<OrderDto> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
         {
-            var order = await _orderRepository.GetByIdAsync(request.Id, cancellationToken);
-            if (order == null)
-            {
-                return Response.Error<OrderDto>("Order not found.");
-            }
-
-            var orderDto = order.Adapt<OrderDto>();
-            return Response.Success(orderDto, "Order retrieved successfully.");
+            var order = await _orders.GetOrderWithDetailsByIdAsync(request.Id, cancellationToken);
+            var setter = TypeAdapterConfig<Order, OrderDto>.NewConfig().MaxDepth(2);
+            return order.Adapt<Order, OrderDto>(setter.Config);
         }
     }
 }
