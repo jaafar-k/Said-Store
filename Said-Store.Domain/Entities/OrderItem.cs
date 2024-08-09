@@ -4,8 +4,8 @@ namespace Said_Store.Domain.Entities
 {
     public class OrderItem
     {
-        public int Id { get; private set; }
-        public int OrderId { get; private set; }
+        public int Id { get; set; }
+        public int OrderId { get; set; }
         public Order Order { get; private set; }
         public int BookId { get; private set; }
         public Book Book { get; private set; }

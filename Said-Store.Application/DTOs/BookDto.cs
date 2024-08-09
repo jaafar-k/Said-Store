@@ -10,5 +10,7 @@ namespace Said_Store.Application.DTOs
         public string? Year { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }
+        public object Message { get; set; }
+        public bool Error { get; set; }
     }
 }

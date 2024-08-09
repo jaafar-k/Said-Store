@@ -1,6 +1,6 @@
-﻿using Said_Store.Application.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using Said_Store.Application.Repositories;
 using Said_Store.Domain.Entities;
-
 namespace Said_Store.Infrastructure.Data.Repositories
 {
     internal class BookRepository : BaseRepository<Book>, IBookRepository
@@ -9,19 +9,21 @@ namespace Said_Store.Infrastructure.Data.Repositories
         {
         }
 
-        public Task DeleteAsync(Book book, CancellationToken cancellationToken)
+        public async Task DeleteAsync(Book book, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<IEnumerable<Book>> GetWholeAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Book>> GetWholeAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.Books.ToListAsync(cancellationToken);
         }
 
-        public Task<Book> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<Book> GetWholeByIdAsync(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.Books
+                .SingleOrDefaultAsync(b => b.Id == id, cancellationToken);
         }
     }
 }

@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Said_Store.Shared
+﻿namespace Said_Store.Shared
 {
     public static class Response
     {
         public static Response<T> Error<T>(string message, T data = default) =>
-            new(data, message, true);
+            new Response<T>(data, message, true);
 
         public static Response<T> Success<T>(T data, string message) =>
-            new(data, message, false);
+            new Response<T>(data, message, false);
     }
 
     public class Response<T>
     {
         public Response() { }
+
         public Response(T data, string message, bool error)
         {
             Data = data;

@@ -11,5 +11,8 @@ namespace Said_Store.Application.Commands.BookCommands
         string Year,
         decimal Price,
         string Description
-    ) : ICommand<BookDto>;
+    ) : ICommand<BookDto>
+    {
+        public int Id { get; internal set; }
+    }
 }
