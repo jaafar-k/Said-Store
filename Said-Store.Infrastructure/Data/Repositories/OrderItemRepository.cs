@@ -17,14 +17,7 @@ namespace Said_Store.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<OrderItem>> GetByOrderIdAsync(int orderId, CancellationToken cancellationToken)
-        {
-            return await _context.OrderItems
-                .Include(oi => oi.Book)
-                .Where(oi => oi.OrderId == orderId)
-                .ToListAsync(cancellationToken);
-        }
-
+       
         public async Task<IEnumerable<OrderItem>> GetItemsByOrderIdAsync(int orderId, CancellationToken cancellationToken)
         {
             return await _context.OrderItems

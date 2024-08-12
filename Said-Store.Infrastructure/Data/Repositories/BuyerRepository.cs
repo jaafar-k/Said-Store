@@ -1,4 +1,4 @@
-﻿using CleanApiSample.Infrastructure.Data.Exceptions;
+﻿using Said_Store.Infrastructure.Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Said_Store.Application.Repositories;
 using Said_Store.Domain.Entities;
@@ -34,10 +34,6 @@ namespace Said_Store.Infrastructure.Data.Repositories
                             .FirstOrDefaultAsync(b => b.Id == id, cancellationToken)
                 ?? throw new NotFoundException(nameof(Buyer), id);
 
-        Task<Book> IBuyerRepository.GetWholeByIdAsync(int id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<IEnumerable<Buyer>> GetWholeAsync(CancellationToken cancellationToken)
         

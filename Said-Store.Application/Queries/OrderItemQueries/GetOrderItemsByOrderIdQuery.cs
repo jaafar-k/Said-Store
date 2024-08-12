@@ -5,5 +5,5 @@ using Said_Store.Shared.Abstractions.Application.Queries;
 
 namespace Said_Store.Application.Queries.OrderItemQueries
 {
-    public record GetOrderItemsByOrderIdQuery(int OrderId) : IQuery<OrderItemDto>;
+    public record GetOrderItemsByOrderIdQuery(int OrderId) : IQuery<IEnumerable<OrderItemDto>>;
 }

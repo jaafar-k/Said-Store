@@ -20,14 +20,14 @@ namespace Said_Store.Api.Controllers
             => _mediator = mediator;
 
         [HttpGet]
-        public async Task<Response<IEnumerable<BuyerDto>>> GetAll(CancellationToken cancellationToken)
+        public async Task<IEnumerable<BuyerDto>> GetAll(CancellationToken cancellationToken)
         {
             var query = new GetAllBuyersQuery();
             return await _mediator.Send(query, cancellationToken);
         }
 
         [HttpGet("{id}")]
-        public async Task<Response<BuyerDto>> GetById(int id, CancellationToken cancellationToken)
+        public async Task<BuyerDto> GetById(int id, CancellationToken cancellationToken)
         {
             var query = new GetBuyerByIdQuery(id);
             return await _mediator.Send(query, cancellationToken);
@@ -45,7 +45,7 @@ namespace Said_Store.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<Response<BuyerDto>> Delete(int id, CancellationToken cancellationToken)
+        public async Task<Response<Unit>> Delete(int id, CancellationToken cancellationToken)
         {
             var command = new DeleteBuyer(id);
             return await _mediator.Send(command, cancellationToken);

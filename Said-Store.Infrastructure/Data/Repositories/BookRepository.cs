@@ -1,4 +1,4 @@
-﻿using CleanApiSample.Infrastructure.Data.Exceptions;
+﻿using Said_Store.Infrastructure.Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Said_Store.Application.Repositories;
 using Said_Store.Domain.Entities;

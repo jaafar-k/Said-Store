@@ -20,14 +20,14 @@ namespace Said_Store.Api.Controllers
             => _mediator = mediator;
 
         [HttpGet]
-        public async Task<Response<IEnumerable<BookDto>>> GetAll(CancellationToken cancellationToken)
+        public async Task<IEnumerable<BookDto>> GetAll(CancellationToken cancellationToken)
         {
             var query = new GetAllBooksQuery();
             return await _mediator.Send(query, cancellationToken);
         }
 
         [HttpGet("{id}")]
-        public async Task<Response<BookDto>> GetById(int id, CancellationToken cancellationToken)
+        public async Task<BookDto> GetById(int id, CancellationToken cancellationToken)
         {
             var query = new GetBookByIdQuery(id);
             return await _mediator.Send(query, cancellationToken);

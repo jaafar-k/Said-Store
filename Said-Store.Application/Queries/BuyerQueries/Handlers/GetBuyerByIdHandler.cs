@@ -3,7 +3,6 @@ using Said_Store.Application.Repositories;
 using Said_Store.Shared.Abstractions.Application.Queries;
 using Mapster;
 using Said_Store.Domain.Entities;
-
 namespace Said_Store.Application.Queries.BuyerQueries.Handlers
 {
     public class GetBuyerByIdHandler : IQueryHandler<GetBuyerByIdQuery, BuyerDto>
@@ -17,9 +16,17 @@ namespace Said_Store.Application.Queries.BuyerQueries.Handlers
 
         public async Task<BuyerDto> Handle(GetBuyerByIdQuery request, CancellationToken cancellationToken)
         {
-            var buyer = await _buyers.GetWholeByIdAsync(request.Id, cancellationToken);
+            var buyer = await _buyers.GetByIdAsync(request.Id, cancellationToken);
+
+            if (buyer == null)
+            {
+                throw new ArgumentNullException(nameof(buyer), $"Buyer with Id {request.Id} was not found.");
+            }
+
             var setter = TypeAdapterConfig<Buyer, BuyerDto>.NewConfig().MaxDepth(2);
             return buyer.Adapt<Buyer, BuyerDto>(setter.Config);
         }
     }
-}
+
+    }
+
