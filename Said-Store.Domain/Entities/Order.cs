@@ -14,6 +14,7 @@ namespace Said_Store.Domain.Entities
         public DateTime OrderDate { get; private set; }
         public decimal TotalAmount { get; private set; }
 
+        public Order() { }
         public Order(int buyerId, List<OrderItem> orderItems, string shippingAddress)
         {
             if (buyerId <= 0) throw new ArgumentOutOfRangeException(nameof(buyerId), "BuyerId must be positive.");
