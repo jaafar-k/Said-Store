@@ -5,7 +5,7 @@ using Said_Store.Domain.Entities;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {
-    internal class BuyerRepository : BaseRepository<Buyer>, IBuyerRepository
+    public class BuyerRepository : BaseRepository<Buyer>, IBuyerRepository
     {
         private readonly AppDbContext _context;
         private readonly DbSet<Buyer> _buyers;

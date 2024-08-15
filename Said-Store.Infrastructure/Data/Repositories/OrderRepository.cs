@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {
-    internal class OrderRepository : BaseRepository<Order>, IOrderRepository
+    public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         private readonly AppDbContext _context;
 

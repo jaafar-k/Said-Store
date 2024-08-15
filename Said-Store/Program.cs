@@ -5,11 +5,21 @@ using Said_Store.Infrastructure;
 using Said_Store.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Said_Store.Application.Repositories;
+using Said_Store.Infrastructure.Data.Repositories;
+using Said_Store.Application.Queries.BookQueries.Handlers;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+//builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IBuyerRepository, BuyerRepository>();
+builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {
-    internal class OrderItemRepository : BaseRepository<OrderItem>, IOrderItemRepository
+    public class OrderItemRepository : BaseRepository<OrderItem>, IOrderItemRepository
     {
         private readonly AppDbContext _context;
 
@@ -32,5 +32,6 @@ namespace Said_Store.Infrastructure.Data.Repositories
                      .Include(oi => oi.Book)
                      .ToListAsync(cancellationToken);
         }
+
     }
 }

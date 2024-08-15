@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {
-    internal class BookRepository : BaseRepository<Book>, IBookRepository
+    public class BookRepository : BaseRepository<Book>, IBookRepository
     {
         private readonly AppDbContext _context;
 

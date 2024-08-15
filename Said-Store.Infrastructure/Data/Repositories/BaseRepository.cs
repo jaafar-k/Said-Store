@@ -4,7 +4,7 @@ using Said_Store.Application.Repositories;
 
 namespace Said_Store.Infrastructure.Data.Repositories
 {
-    internal class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly AppDbContext _context;
         protected readonly DbSet<TEntity> _dbSet;
@@ -42,5 +42,6 @@ namespace Said_Store.Infrastructure.Data.Repositories
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync(cancellationToken);
         }
+
     }
 }
