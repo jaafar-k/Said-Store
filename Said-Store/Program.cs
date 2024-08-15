@@ -8,7 +8,8 @@ using Said_Store.Application.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
