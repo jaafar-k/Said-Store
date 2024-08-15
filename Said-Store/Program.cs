@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-
+using MediatR;
 using Said_Store.Infrastructure;
 using Said_Store.Infrastructure.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Said_Store.Application.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -34,6 +35,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyReadingList.WebAPI v1");
     });
 }
+
 
 app.UseHttpsRedirection();
 
