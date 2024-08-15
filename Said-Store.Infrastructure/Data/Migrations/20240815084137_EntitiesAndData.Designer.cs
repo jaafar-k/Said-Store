@@ -11,8 +11,8 @@ using Said_Store.Infrastructure.Data;
 namespace Said_Store.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240812133456_AllOfTheEntities")]
-    partial class AllOfTheEntities
+    [Migration("20240815084137_EntitiesAndData")]
+    partial class EntitiesAndData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,12 +41,114 @@ namespace Said_Store.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.ToTable("Books");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "F. Scott Fitzgerald",
+                            Description = "A classic novel of the Roaring Twenties.",
+                            Genre = "Fiction",
+                            Price = 10.99m,
+                            Title = "The Great Gatsby",
+                            Year = 1925
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Harper Lee",
+                            Description = "A novel of warmth and humor despite dealing with serious issues of race and rape.",
+                            Genre = "Fiction",
+                            Price = 7.99m,
+                            Title = "To Kill a Mockingbird",
+                            Year = 1960
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "George Orwell",
+                            Description = "A novel depicting a totalitarian society controlled by Big Brother.",
+                            Genre = "Adventure",
+                            Price = 8.99m,
+                            Title = "1984",
+                            Year = 1949
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Herman Melville",
+                            Description = "A seafaring adventure about obsession and revenge.",
+                            Genre = "Adventure",
+                            Price = 11.50m,
+                            Title = "Moby Dick",
+                            Year = 1851
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Leo Tolstoy",
+                            Description = "A historical novel that chronicles the French invasion of Russia.",
+                            Genre = "Historical",
+                            Price = 12.99m,
+                            Title = "War and Peace",
+                            Year = 1869
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Author = "Jane Austen",
+                            Description = "A romantic novel that critiques the British landed gentry at the end of the 18th century.",
+                            Genre = "Romance",
+                            Price = 9.99m,
+                            Title = "Pride and Prejudice",
+                            Year = 1813
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Author = "J.D. Salinger",
+                            Description = "A story about teenage angst and alienation.",
+                            Genre = "Fiction",
+                            Price = 6.99m,
+                            Title = "The Catcher in the Rye",
+                            Year = 1951
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Author = "J.R.R. Tolkien",
+                            Description = "A fantasy novel and children's book about Bilbo Baggins's quest.",
+                            Genre = "Fantasy",
+                            Price = 8.50m,
+                            Title = "The Hobbit",
+                            Year = 1937
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Author = "Fyodor Dostoevsky",
+                            Description = "A novel that explores the psychological effects of crime and punishment.",
+                            Genre = "Philosophical",
+                            Price = 10.75m,
+                            Title = "Crime and Punishment",
+                            Year = 1866
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Author = "Homer",
+                            Description = "An epic poem about the journey of Odysseus back home after the Trojan War.",
+                            Genre = "Fantasy",
+                            Price = 14.00m,
+                            Title = "The Odyssey",
+                            Year = -800
+                        });
                 });
 
             modelBuilder.Entity("Said_Store.Domain.Entities.Buyer", b =>

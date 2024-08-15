@@ -8,7 +8,7 @@ namespace Said_Store.Application.Commands.BookCommands
         string Title,
         string Author,
         string Genre,
-        string Year,
+        int Year,
         decimal Price,
         string Description
     ) : ICommand<BookDto>;

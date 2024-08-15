@@ -29,7 +29,7 @@ namespace Said_Store.Application.Commands.BookCommands.Handlers
 
             book.UpdateDetails(title, author, genre, year, price, description);
 
-            var updatedBook = await _books.UpdateAsync(book, cancellationToken);
+            await _books.UpdateAsync(book, cancellationToken);
 
             return Response.Success(book.Adapt<BookDto>(), "Updated " + book.Title);
         }
