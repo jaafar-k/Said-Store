@@ -60,7 +60,7 @@ namespace Said_Store.Migrations
                         {
                             Id = 2,
                             Author = "Harper Lee",
-                            Description = "A novel of warmth and humor despite dealing with serious issues of race and rape.",
+                            Description = "A novel of warmth and humor despite dealing with serious issues of race and challenge.",
                             Genre = "Fiction",
                             Price = 7.99m,
                             Title = "To Kill a Mockingbird",
@@ -83,7 +83,7 @@ namespace Said_Store.Migrations
                             Description = "A seafaring adventure about obsession and revenge.",
                             Genre = "Adventure",
                             Price = 11.50m,
-                            Title = "Moby Dick",
+                            Title = "Moby Dog",
                             Year = 1851
                         },
                         new

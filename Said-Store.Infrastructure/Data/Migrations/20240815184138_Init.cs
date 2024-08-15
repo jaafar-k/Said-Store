@@ -102,9 +102,9 @@ namespace Said_Store.Migrations
                 values: new object[,]
                 {
                     { 1, "F. Scott Fitzgerald", "A classic novel of the Roaring Twenties.", "Fiction", 10.99m, "The Great Gatsby", 1925 },
-                    { 2, "Harper Lee", "A novel of warmth and humor despite dealing with serious issues of race and rape.", "Fiction", 7.99m, "To Kill a Mockingbird", 1960 },
+                    { 2, "Harper Lee", "A novel of warmth and humor despite dealing with serious issues of race and challenge.", "Fiction", 7.99m, "To Kill a Mockingbird", 1960 },
                     { 3, "George Orwell", "A novel depicting a totalitarian society controlled by Big Brother.", "Adventure", 8.99m, "1984", 1949 },
-                    { 4, "Herman Melville", "A seafaring adventure about obsession and revenge.", "Adventure", 11.50m, "Moby Dick", 1851 },
+                    { 4, "Herman Melville", "A seafaring adventure about obsession and revenge.", "Adventure", 11.50m, "Moby Dog", 1851 },
                     { 5, "Leo Tolstoy", "A historical novel that chronicles the French invasion of Russia.", "Historical", 12.99m, "War and Peace", 1869 },
                     { 6, "Jane Austen", "A romantic novel that critiques the British landed gentry at the end of the 18th century.", "Romance", 9.99m, "Pride and Prejudice", 1813 },
                     { 7, "J.D. Salinger", "A story about teenage angst and alienation.", "Fiction", 6.99m, "The Catcher in the Rye", 1951 },
