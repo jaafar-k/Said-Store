@@ -34,9 +34,9 @@ namespace Said_Store.Infrastructure.Data
                 .HasForeignKey(o => o.BuyerId);
             builder.Entity<Book>().HasData(
     new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", "Fiction", 1925, 10.99m, "A classic novel of the Roaring Twenties."),
-    new Book(2, "To Kill a Mockingbird", "Harper Lee", "Fiction", 1960, 7.99m, "A novel of warmth and humor despite dealing with serious issues of race and rape."),
+    new Book(2, "To Kill a Mockingbird", "Harper Lee", "Fiction", 1960, 7.99m, "A novel of warmth and humor despite dealing with serious issues of race and challenge."),
     new Book(3, "1984", "George Orwell", "Adventure", 1949, 8.99m, "A novel depicting a totalitarian society controlled by Big Brother."),
-    new Book(4, "Moby Dick", "Herman Melville", "Adventure", 1851, 11.50m, "A seafaring adventure about obsession and revenge."),
+    new Book(4, "Moby Dog", "Herman Melville", "Adventure", 1851, 11.50m, "A seafaring adventure about obsession and revenge."),
     new Book(5, "War and Peace", "Leo Tolstoy", "Historical", 1869, 12.99m, "A historical novel that chronicles the French invasion of Russia."),
     new Book(6, "Pride and Prejudice", "Jane Austen", "Romance", 1813, 9.99m, "A romantic novel that critiques the British landed gentry at the end of the 18th century."),
     new Book(7, "The Catcher in the Rye", "J.D. Salinger", "Fiction", 1951, 6.99m, "A story about teenage angst and alienation."),
