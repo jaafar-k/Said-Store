@@ -11,7 +11,7 @@ using Said_Store.Infrastructure.Data;
 namespace Said_Store.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240815184138_Init")]
+    [Migration("20240816124925_Init")]
     partial class Init
     {
         /// <inheritdoc />
