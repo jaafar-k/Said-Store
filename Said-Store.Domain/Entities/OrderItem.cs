@@ -13,6 +13,8 @@ namespace Said_Store.Domain.Entities
         public decimal Price { get; private set; }
         public decimal TotalPrice => Quantity * Price;
 
+        public string? Title { get; set; }
+
         public OrderItem(int bookId, int quantity, decimal price)
         {
             if (bookId <= 0) throw new ArgumentOutOfRangeException(nameof(bookId), "BookId must be positive.");

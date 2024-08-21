@@ -27,6 +27,10 @@ namespace Said_Store.Infrastructure.Data
                 .HasOne(oi => oi.Book)
                 .WithMany()
                 .HasForeignKey(oi => oi.BookId);
+            builder.Entity<Order>()
+                .HasOne(o => o.Buyer)
+                .WithMany(b => b.Orders)
+                .HasForeignKey(o => o.BuyerId);
 
             builder.Entity<Buyer>()
                 .HasMany(b => b.Orders)

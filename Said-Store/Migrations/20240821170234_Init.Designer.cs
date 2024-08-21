@@ -11,7 +11,7 @@ using Said_Store.Infrastructure.Data;
 namespace Said_Store.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240816124925_Init")]
+    [Migration("20240821170234_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -213,6 +213,9 @@ namespace Said_Store.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
