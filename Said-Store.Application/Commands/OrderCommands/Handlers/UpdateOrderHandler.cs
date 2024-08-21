@@ -36,7 +36,10 @@ namespace Said_Store.Application.Commands.OrderCommands.Handlers
                     book.Id,
                     itemDto.Quantity,
                     book.Price
-                );
+                )
+                    {
+                    Title = book.Title
+                };
                 order.AddOrderItem(orderItem);
             }
 
